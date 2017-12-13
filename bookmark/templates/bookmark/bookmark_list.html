@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Django Bookmark List{% endblock %}
+
+{% block content %}
+<div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+
+
+            <div id="post-preview" style="text-align: center">
+    <h1>북마크 목록</h1>
+
+    <ul style="list-style: none;">
+        {% for bookmark in object_list %}
+            <li><a href="{% url 'bookmark:detail' bookmark.id %}">{{ bookmark }}</a></li>
+        {% endfor %}
+    </ul>
+            </div></div></div></div>
+{% endblock %}

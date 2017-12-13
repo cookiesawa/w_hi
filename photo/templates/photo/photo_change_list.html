@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}photo_change_list.html{% endblock %}
+
+{% block content %}
+<div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+
+
+            <div id="post-preview" style="text-align: center">
+
+    <h1>{{user}} - 사진 수정</h1>
+    
+        <table class="change-list" style="width:120%;text-align: center; margin:0 auto;      table-layout:fixed;
+    word-break:break-all;">
+        <tr>
+            <th>앨범</th>
+            <th>제목</th>
+            <th>설명</th>
+            <th>글쓴이</th>
+            <th>수정</th>
+            <th>삭제</th>
+        </tr>
+    
+        {% for item in object_list %}
+        <tr>
+            <td>{{ item.album }}</td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.description|linebreaks }}</td>
+            <td>{{ item.owner }}</td>
+            <td><a class="btn btn-warning" href="{% url 'photo:photo_update' item.id %}">수정</a></td>
+            <td><a class ="btn btn-warning "href="{% url 'photo:photo_delete' item.id %}">삭제</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+            </div></div></div></div>
+{% endblock %}

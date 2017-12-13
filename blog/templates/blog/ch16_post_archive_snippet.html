@@ -1,0 +1,8 @@
+    <ul>
+        {% for post in object_list %}
+        <tr>
+            <td>{{ post.modify_date|date:"Y-m-d" }}&nbsp;&nbsp;&nbsp;</td>
+            <td><a href="{{ post.get_absolute_url }}"><strong>{{ post.title }}</strong></a></td>
+        </tr>
+        {% endfor %}
+    </ul>

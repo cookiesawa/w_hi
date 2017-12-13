@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}photo_detail.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "photo/photo.css" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+
+
+            <div id="post-preview" style="text-align: center">
+
+    <h2>{{ object.title }}</h2>
+    
+            <a href="{{ object.image.url }}">
+        <img style="max-width:100%" src="{{ object.image.url }}" />
+        </a>
+        <table class="photo-detail" style="width:100%;text-align: center; margin:0 auto;      table-layout:fixed;
+    word-break:break-all;">
+
+    <tr>
+    <td>사진 설명</td>
+    <td>
+        {% if object.description %}<p>{{ object.description|linebreaks }}</p>
+        {% else %}<p>(blank)</p>{% endif %}</td>
+    </tr>
+    <tr>
+    <td>
+        업로드일</td>
+        <td>{{ object.upload_date }}</p></td>
+    </tr>
+    <tr>
+        <td>앨범</td>
+        <td><p><a href="{% url 'photo:album_detail' object.album.id %}">{{ object.album.name }}</a></p></td>
+
+    </tr></table>
+
+            </div></div></div></div>
+{% endblock %}

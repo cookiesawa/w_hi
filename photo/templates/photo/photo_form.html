@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}photo_form.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/forms.css" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+
+
+            <div id="post-preview" style="text-align: center">
+
+    <h1>사진 추가 및 수정 {{user}}</h1>
+
+    {% if form.is_multipart %}
+    <form enctype="multipart/form-data" method="post" action=".">
+    {% else %}
+    <form method="post" action=".">
+    {% endif %}
+    {% csrf_token %}
+
+    {% if form.errors %}
+    <p class="errornote">오류! 아래 에러를 수정하십시오.</p>
+    {% endif %}
+
+    <p>이 곳에서 사진을 추가하거나 수정할 수 있습니다.</p>
+
+    <fieldset class="aligned">
+
+        <div id="post-preview"  >
+            이미지 첨부 :  {{ form.image }}
+        </div>
+
+        <div id="post-preview"  >
+            앨범  선택 : {{ form.album }}
+            <button class="btn btn-warning" type="button"><a href="{% url 'photo:album_add' %}">앨범 추가하기</a></button>
+        </div>
+    
+        <div id="post-preview"  >
+            제목: {{ form.title }}
+        </div>
+
+        <div id="post-preview"  >
+          설명: <br>{{ form.description }}
+        </div>
+
+    </fieldset>
+
+    <div class="submit-row">
+        <input class="btn btn-warning" type="submit" value="등록"/>
+    </div>
+
+    <script type="text/javascript">document.getElementById('id_album').focus();</script>
+
+    </form>
+
+            </div></div></div></div>
+{% endblock %}

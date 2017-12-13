@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}bookmark_form.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/forms.css" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+
+
+            <div id="post-preview" style="text-align: center">
+
+    <h1>북마크 수정</h1>
+
+    <form action="." method="post">{% csrf_token %}
+
+    {% if form.errors %}
+    <p class="errornote">오류! 아래 에러를 수정하십시오.</p>
+    {% endif %}
+
+    <p>제목과 링크를 입력해주세요</p>
+    <fieldset class="aligned" >
+
+        <div id="post-preview"  >
+           제목 :  {{ form.title }}
+        </div>
+
+        <div id="post-preview" >
+            링크 : {{ form.url }}
+        </div>
+
+    </fieldset>
+
+
+    <div class="submit-row">
+        <input class="btn btn-warning" type="submit" value="등록"/>
+    </div>
+
+    <script type="text/javascript">document.getElementById('id_title').focus();</script>
+    </form>
+
+            </div></div></div></div>
+{% endblock %}

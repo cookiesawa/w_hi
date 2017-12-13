@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}post_archive.html{% endblock %}
+
+{% block content %}
+
+<div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+
+
+            <div id="post-preview"style="text-align: center">
+
+<h1>  포스트 기록</h1>
+            <h6> {% now "N d, Y" %} </h6>
+            <br/>
+{#<ul>#}
+{#    {% for date in date_list %}#}
+{#    <li style="display: inline;">#}
+{#        <a href="{% url 'blog:post_year_archive' date|date:'Y' %}">| {{ date|date:"Y" }} </a></li>#}
+{#    {% endfor %}|#}
+{#</ul>#}
+
+
+<div class = "post-tilte">
+    <table class="change-list" style="text-align: center; margin:0 auto">
+        <tr>
+            <th>날짜</th>
+            <th>제목</th>
+        </tr>
+        {% for post in object_list %}
+
+            <tr>
+                <td>{{ post.modify_date|date:"Y-m-d" }}&nbsp;&nbsp;&nbsp;</td>
+                <td><a href="{{ post.get_absolute_url }}"><strong>{{ post.title }}</strong></a></td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</div>
+
+          <div class="post-preview">
+            <a href="{{ post.get_absolute_url }}">
+    <h2 class="post-title"><a href='{{ post.get_absolute_url }}'>{{ post.title }}</a></h2>
+    <p class="post-subtitle">{{ post.description }}</p>
+            <p class="post-meta">{{ post.modify_date|date:"N d, Y" }} </p>
+          <hr>
+            </a>
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}post_form.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/forms.css" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+
+
+            <div id="post-preview" style="text-align: center">
+
+    <h1>포스트</h1>
+
+    <form action="." method="post">{% csrf_token %}
+
+    {% if form.errors %}
+    <p class="errornote">오류! 아래 에러를 수정하십시오.</p>
+    {% endif %}
+
+    <p>추가 및 수정하기</p>
+
+    <fieldset class="aligned">
+
+        <div class="post-preview">
+            제목 : {{ form.title }}
+        </div>
+    
+        <div class="post-preview">
+          슬러그 : {{ form.slug }}
+        </div>
+
+        <div class="post-preview">
+            설명 :{{ form.description }}
+        </div>
+
+        <div class="post-preview">
+           내용 :<br>{{ form.content }}
+        </div>
+
+        <div class="post-preview">
+           태그: {{ form.tag }}
+        </div>
+
+    </fieldset>
+
+    <div class="submit-row">
+        <input class="btn btn-warning" type="submit" value="등록"/>
+    </div>
+
+    <script type="text/javascript">document.getElementById('id_title').focus();</script>
+    </form>
+
+            </div></div></div></div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}post_all.html{% endblock %}
+{% block content %}
+
+{% for post in posts %}
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-preview">
+            <a href="{{ post.get_absolute_url }}">
+    <h2 class="post-title"><a href='{{ post.get_absolute_url }}'>{{ post.title }}</a></h2>
+    <p class="post-subtitle">{{ post.description }}</p>
+            <p class="post-meta">{{ post.modify_date|date:"N d, Y" }} </p>
+          <hr>
+            </a>
+        </div>
+      </div>
+    </div>
+
+{% endfor %}
+
+<br/>
+
+
+{% endblock content %}
+
+<article>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">이전페이지</a>
+        {% endif %}
+
+        페이지 {{ page_obj.number }} 중 {{ page_obj.paginator.num_pages }}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">다음페이지</a>
+        {% endif %}
+          </div>
+        </div>
+      </div>
+ </article>
+
+
+

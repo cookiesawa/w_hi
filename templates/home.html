@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}home.html{% endblock %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+<section class="showcase">
+      <div class="container-fluid p-0">
+        <div class="row no-gutters">
+
+          <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('../../static/main/img/about-bg.jpg');"></div>
+          <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+              <a href="{% url 'blog:index' %}"><h2>블로그 기능</h2></a>
+            <p class="lead mb-0"> 당신만의 블로그에 글을 작성하세요.</p>
+              <p class="lead mb-0"> 수정도 가능하답니다</p>
+          </div>
+        </div>
+        <div class="row no-gutters">
+          <div class="col-lg-6 text-white showcase-img" style="background-image: url('../../static/main/img/home-bg.jpg');"></div>
+          <div class="col-lg-6 my-auto showcase-text">
+              <a href="{% url 'bookmark:index' %}"><h2>북마크 기능</h2></a>
+            <p class="lead mb-0">
+                즐겨찾는 웹페이지의 바로가기를 저장하세요 </p>
+            <p class="lead mb-0">  해당 페이지로 빠르게 이동할 수 있습니다.</p>
+          </div>
+        </div>
+        <div class="row no-gutters">
+          <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('../../static/main/img/post-sample-image.jpg');"></div>
+          <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+              <a href="{% url 'photo:index' %}"><h2>앨범 기능</h2></a>
+            <p class="lead mb-0">
+                '앨범' 또는 '사진' 메뉴에서</p>
+                <p class="lead mb-0">
+                    사진을 여러장 추가하고 </p>
+                    <p class="lead mb-0">각각의 사진에 쉽게 설명, 장소를 적어두세요</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+{% endblock content %}

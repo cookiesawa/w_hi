@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}post_all.html{% endblock %}
+
+{% block content %}
+<div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+
+
+            <div id="post-preview" style="text-align: center">
+
+{# <h1>Blog List - test</h1> #}
+<h1>'{{ SearchWord }}' 검색결과 </h1>
+
+{% for post in posts %}
+    <h2><a href='{{ post.get_absolute_url }}'>{{ post.title }}</a></h2>
+    {{ post.modify_date|date:"N d, Y" }}
+    <p>{{ post.description }}</p>
+{% endfor %}
+
+<br/>
+
+<div>
+    <span>
+        {% if page_obj.has_previous %}
+            <a class="btn btn-warning"  href="?page={{ page_obj.previous_page_number }}">이전페이지</a>
+        {% endif %}
+      
+        페이지 {{ page_obj.number }} 중 {{ page_obj.paginator.num_pages }}
+      
+        {% if page_obj.has_next %}
+            <a  class="btn btn-warning" href="?page={{ page_obj.next_page_number }}">다음페이지</a>
+        {% endif %}
+    </span>
+
+</div>
+
+            </div></div></div></div>
+{% endblock %}

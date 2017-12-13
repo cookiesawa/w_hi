@@ -1,0 +1,177 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>웹프로그래밍9조</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href='{% static "main/vendor/bootstrap/css/bootstrap.min.css"%}' rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href='{% static "main/vendor/font-awesome/css/font-awesome.min.css"%}' rel="stylesheet" type="text/css">
+    <link href='{% static 'https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic'%}'  rel='stylesheet' type='text/css'>
+    <link href='{% static  'https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'%}'  rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href='{% static "main/css/clean-blog.min.css" %}' rel="stylesheet">
+      <link href='{% static "main/css/landing-page.css" %}' rel="stylesheet">
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container" >
+        <a class="navbar-brand" href="{% url 'home' %}">웹프로그래밍 9조</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+               <a class="nav-link" href="{% url 'home' %}">홈 <span class="sr-only">(current)</span></a>
+            </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'blog:index' %}">블로그</a>
+          </li>
+
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'photo:index' %}">앨범</a>
+            </li>
+
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'bookmark:index' %}">북마크</a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'blog:post_archive' %}">포스트기록</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'admin:index' %}">관리자</a>
+            </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">추가</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01" role="menu">
+                <a class="dropdown-item"  href="{% url 'bookmark:add' %}">북마크</a>
+                <a class="dropdown-item"  href="{% url 'blog:add' %}">포스트</a>
+                <a class="dropdown-item"  href="{% url 'photo:album_add' %}">앨범</a>
+                <a class="dropdown-item"  href="{% url 'photo:photo_add' %}">사진</a>
+            </div>
+          </li>
+
+           <li class="nav-item dropdown">
+             <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">변화</a>
+                <ul class="dropdown-menu" aria-labelledby="dropdown02" role="menu">
+                    <li role="presentation"><a class="dropdown-item" role="menu-item" href="{% url 'bookmark:change' %}">북마크</a></li>
+                    <li><a class="dropdown-item" href="{% url 'blog:change' %}">포스트</a></li>
+                    <li><a class="dropdown-item" href="{% url 'photo:album_change' %}">앨범</a></li>
+                    <li><a class="dropdown-item" href="{% url 'photo:photo_change' %}">사진</a></li>
+                </ul>
+            </li>
+
+
+             <li class="nav-item dropdown">
+              {% if user.is_active %}
+             <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">로그아웃</a>
+                 {% else %}<a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">로그인</a>
+                 {% endif %}
+                 <ul class="dropdown-menu" aria-labelledby="dropdown02" role="menu">
+                    <li>
+                         {% if user.is_active %}
+                             <span class="dropdown-item">{% firstof user.get_short_name user.get_username %}님</span>
+                        <a class="dropdown-item" href="{% url 'logout' %}">로그아웃</a>
+                        {% else %}
+                             <span class="dropdown-item">방문자님</span>
+                        <a class="dropdown-item" href="{% url 'login' %}">로그인</a>
+                        {% endif %}
+                    </li>
+                    <li>
+                       {% if user.is_active %}
+                           <a class="dropdown-item" href="{% url 'password_change' %}">비밀번호변경</a>
+                        {% else %}
+                        <a  class="dropdown-item" href="{% url 'register' %}">등록</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </li>
+
+          </ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('img/home-bg.jpg')">
+
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading" >
+              <h1> Hello! </h1>
+                <span class="subheading">This is Django Project </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Bootstrap core JavaScript -->
+    <script src='{% static "main/vendor/jquery/jquery.min.js"%}'></script>
+    <script src='{% static "main/vendor/bootstrap/js/bootstrap.bundle.min.js" %}'></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/clean-blog.min.js"></script>
+{% block content %}{% endblock %}
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <ul class="list-inline text-center">
+              <li class="list-inline-item">
+                <a href="#">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            </ul>
+            <p class="copyright text-muted">Copyright &copy; Your Website 2017</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+
+</html>

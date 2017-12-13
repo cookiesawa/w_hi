@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}bookmark_change_list.html{% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+
+
+            <div id="post-preview" style="text-align: center">
+
+    <h1>북마크 수정 </h1>
+            </div>
+    <table class="change-list" style="width:100%;text-align: center; margin:0 auto;      table-layout:fixed;
+    word-break:break-all;">
+        <tr>
+            <th>제목</th>
+            <th style="width:40%">링크</th>
+            <th>글쓴이</th>
+            <th>수정</th>
+            <th>삭제</th>
+        </tr>
+
+        {% for item in object_list %}
+        <tr>
+            <td>{{ item.title }}</td>
+            <td style="width:40%">{{ item.url }}</td>
+            <td>{{ item.owner }}</td>
+            <td><a class="btn btn-warning" href="{% url 'bookmark:update' item.id %}">수정</a></td>
+            <td><a class="btn btn-warning" href="{% url 'bookmark:delete' item.id %}">삭제</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+        </div>
+      </div>
+</div>
+{% endblock %}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<title>{% block title %}장고 웹프로그래밍 만들기{% endblock %}</title>
+
+{% load staticfiles %}
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Off Canvas Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="offcanvas.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "css/base.css" %}{% endblock %}" />
+<link rel="stylesheet" type="text/css" href="{% block extrastyle %}{% endblock %}" />
+
+</head>
+
+<body>
+
+<div id="header">
+    <h2 class="maintitle">쉽고&amp;빠른 장고 웹프로그래밍</h2>
+    {% if user.is_active %}
+    <h4 class="welcome">환영합니다.
+                <strong>{% firstof user.get_short_name user.get_username %}</strong> /
+                <a href="{% url 'password_change' %}">Change Password</a> /
+                <a href="{% url 'logout' %}">Logout</a>
+    </h4>
+    {% else %}
+    <h4 class="welcome">환영합니다. 방문자님 /
+                <a href="{% url 'login' %}">로그인</a> /
+                <a href="{% url 'register' %}">등록</a>
+    </h4>
+    {% endif %}
+</div>
+
+   <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'home' %}">홈 <span class="sr-only">(current)</span></a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'bookmark:index' %}">북마크</a>
+            </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'blog:index' %}">블로그</a>
+          </li>
+
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'photo:index' %}">앨범</a>
+            </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">추가</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+                <a class="dropdown-item"  href="{% url 'bookmark:add' %}">북마크</a>
+                <a class="dropdown-item"  href="{% url 'blog:add' %}">포스트</a>
+                <a class="dropdown-item"  href="{% url 'photo:album_add' %}">앨범</a>
+                <a class="dropdown-item"  href="{% url 'photo:photo_add' %}">사진</a>
+            </div>
+          </li>
+
+
+            <li class="nav-item dropdown">
+             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">변화</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="{% url 'bookmark:change' %}">북마크</a>
+                    <a class="dropdown-item" href="{% url 'blog:change' %}">포스트</a>
+                    <a class="dropdown-item" href="{% url 'photo:album_change' %}">앨범</a>
+                    <a class="dropdown-item" href="{% url 'photo:photo_change' %}">사진</a>
+                </div>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'blog:post_archive' %}">포스트기록</a>
+            </li>
+
+            <li class="nav-item">
+                <a  class="nav-link"href="{% url 'blog:search' %}">블로그검색</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'admin:index' %}">관리자</a>
+            </li>
+
+
+
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+
+{% block content %}{% endblock %}
+
+{% block footer %}{% endblock %}
+
+</body>
+</html>

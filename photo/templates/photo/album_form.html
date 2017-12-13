@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}album_form.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/forms.css" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+
+
+            <div id="post-preview" style="text-align: center">
+
+    <h1>앨범-사진 관리</h1><br>
+
+    {% if form.is_multipart or formset.is_multipart %}
+    <form enctype="multipart/form-data" method="post" action=".">
+    {% else %}
+    <form method="post" action=".">
+    {% endif %}
+    {% csrf_token %}
+
+    {% if form.errors %}
+    <p class="errornote">오류! 아래 폼에러를 수정하십시오.</p>
+    {% endif %}
+    {% if formset.errors %}
+    <p class="errornote">오류! 아래 폼셋에러를 수정하십시오.</p>
+    {% endif %}
+
+
+    <h4>앨범 관리</h4>
+
+    <fieldset class="aligned">
+        <div class="post-preview">
+            앨범 제목 : {{ form.name }}<br>
+        </div><br>
+        <div class="post-preview">
+            앨범 설명 :  {{ form.description }}
+        </div><br>
+    </fieldset>
+
+    <h4>사진 관리</h4>
+
+    {{ formset.management_form }}
+    {% for form in formset %}
+        {{ form.id }}
+    <fieldset class="aligned">
+        <div class="post-preview">
+           이미지 :  {{ form.image }}
+        </div><br>
+        <div class="post-preview">
+            사진 제목 : {{ form.title }}
+        </div><br>
+        <div class="post-preview">
+          사진 설명: <br>{{ form.description }}
+        </div><br>
+    </fieldset>
+    {% endfor %}
+
+    <div class="submit-row">
+        <input class ="btn btn-warning" type="submit" value="등록"/>
+    </div>
+
+    <script type="text/javascript">document.getElementById('id_name').focus();</script>
+
+    </form>
+
+</div>
+{% endblock %}

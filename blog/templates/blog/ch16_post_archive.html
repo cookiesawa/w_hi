@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}post_archive.html{% endblock %}
+
+{% block content %}
+<div id="content">
+
+
+<article>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+                <h2>{% now "N d, Y" %} - 포스트 기록 </h2>
+                <ul>
+                    {% for date in date_list %}
+                        <tr>
+                            <td><a href="{% url 'blog:post_year_archive' date|date:'Y' %}">Year-{{ date|date:"Y" }}</a></td>
+                        </tr>
+                    <li style="display: inline;">
+                        <a href="{% url 'blog:post_year_archive' date|date:'Y' %}">Year-{{ date|date:"Y" }}</a></li>
+                    {% endfor %}
+                </ul>
+          </div>
+        </div>
+      </div>
+ </article>
+
+<br/>
+
+<div>
+    {% include "blog/post_archive_snippet.html" %}
+</div>
+
+</div>
+{% endblock %}
